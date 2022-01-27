@@ -5,6 +5,7 @@ import './Home.css'
 function Home(props) {
     const [todayDate, setTodayDate] = useState("");
     const [isRebus, setIsRebus] = useState("");
+    const [crosswordURL, setCrossWordURL] = useState("");
 
     async function getRSSdata() {
         let today = new Date();
@@ -29,8 +30,9 @@ function Home(props) {
         // All of this will likely break on year change overs and month change overs
         // Don't have a solution right now but will fix it eventually
 
-        let date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+        let date = `${year}-${month}-${day}`;
         setTodayDate(date);
+        setCrossWordURL(`https://www.nytimes.com/crosswords/game/daily/${year}/${month}/${day}`);
         
         let todayURL = `https://waypointanywhere.herokuapp.com/https://www.nytimes.com/${year}/${month}/${day - 1}/crosswords/daily-puzzle-${year}-${month}-${day}.html`;
 
@@ -51,7 +53,7 @@ function Home(props) {
     }, [])
     return (
         <div id="text">
-            <p>Does the New York Times Crossword for {todayDate} have a rebus?</p>
+            <p>Does the New York Times Crossword for <a href={crosswordURL}>{todayDate}</a> have a rebus?</p>
             <div id="newNumber">
                {isRebus}
             </div>
