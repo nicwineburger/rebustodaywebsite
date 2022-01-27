@@ -28,12 +28,11 @@ function Home(props) {
 
         // All of this will likely break on year change overs and month change overs
         // Don't have a solution right now but will fix it eventually
-        
+
         let date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
         setTodayDate(date);
         
         let todayURL = `https://waypointanywhere.herokuapp.com/https://www.nytimes.com/${year}/${month}/${day - 1}/crosswords/daily-puzzle-${year}-${month}-${day}.html`;
-        console.log(todayURL);
 
         let response = await fetch(todayURL, {
             mode: 'cors'
